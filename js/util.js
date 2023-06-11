@@ -1,17 +1,17 @@
-const GET_RANDOM_NUMBER = (min,max) => {
-  if(min>=max){
+const getRandomNumber = (min,max) => {
+  if(min >= max){
     alert('Минимальное значение больше максимального или равняется ему.');
-  }else if(min>=0){
+  }else if(min >= 0){
     return Math.floor(Math.random() * (max - min + 1) + min);
   }else{
     alert('Допускается использование только положительных чисел.');
   }
 }
 
-const GET_RANDOM_COORDINATE = (min,max,PointNumber) => {
-  if(min>=max){
+const getRandomCoordinate = (min,max,PointNumber) => {
+  if(min >= max){
     alert('Минимальное значение больше максимального или равняется ему.');
-  }else if(min>=0){
+  }else if(min >= 0){
     let number = Math.random() * (max - min ) + min;
     return number.toFixed(PointNumber)
   }else{
@@ -20,23 +20,23 @@ const GET_RANDOM_COORDINATE = (min,max,PointNumber) => {
 }
 
 const getRandonArrayElement = (elements) => {
-  return elements[GET_RANDOM_NUMBER(0,elements.length-1)];
+  return elements[getRandomNumber(0,elements.length - 1)];
 };
 
 const getRandonFeatures= (features) => {
   const maxLength = features.length;
-  const lengthOfArray = GET_RANDOM_NUMBER(1, maxLength);
+  const lengthOfArray = getRandomNumber(1, maxLength);
   const array = [];
 
   for(let i = 0; i < lengthOfArray; i++) {
-    const indexOfEl = GET_RANDOM_NUMBER(0, maxLength-1);
-    const el = features[indexOfEl];
+    const randomIndex = getRandomNumber(0, maxLength - 1);
+    const randomFeature = features[randomIndex];
 
-    if (!array.includes(el)) {
-      array.push(el);
+    if (!array.includes(randomFeature)) {
+      array.push(randomFeature);
     }
   }
   return array;
 }
 
-export {GET_RANDOM_NUMBER, GET_RANDOM_COORDINATE, getRandonArrayElement, getRandonFeatures};
+export {getRandomNumber, getRandomCoordinate, getRandonArrayElement, getRandonFeatures};

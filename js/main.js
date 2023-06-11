@@ -1,4 +1,4 @@
 import './data.js';
-import { createSimilarAd } from './data.js';
+import { createSimilarPoster } from './data.js';
 
-createSimilarAd();
+console.log(createSimilarPoster());
