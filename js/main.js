@@ -1,4 +1,4 @@
 import './data.js';
-import { createSimilarPoster } from './data.js';
-
-console.log(createSimilarPoster());
+import { similarPosters } from './data.js';
+import './createNewCard.js'
+console.log(similarPosters);

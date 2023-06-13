@@ -50,10 +50,9 @@ const createPoster = () => {
   };
 };
 
-const createSimilarPoster = () => {
-  //создаем пустой массив заданной из переменной длинны, заполняем сгенерерованными объектами
-  const similarPoster = new Array(SIMILAR_AD_COUNT).fill(null).map(() => createPoster());
-  return similarPoster;
-}
 
-export {createSimilarPoster};
+  //создаем пустой массив заданной из переменной длинны, заполняем сгенерерованными объектами
+  const similarPosters = new Array(SIMILAR_AD_COUNT).fill(null).map(() => createPoster());
+
+
+export {similarPosters};
