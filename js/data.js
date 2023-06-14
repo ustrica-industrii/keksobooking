@@ -22,7 +22,7 @@ const createOffer = () => {
     title: getRandonArrayElement(TITLES),
     address: createLocation(),
     price: getRandomNumber(0,100000),
-    type: getRandonArrayElement(TYPES),
+    type: getRandonArrayElement(Object.values(TYPES)),
     rooms: getRandomNumber(0,100),
     quests: getRandomNumber(0,100),
     chekin: getRandonArrayElement(TIMES_CHECKIN),

@@ -5,7 +5,7 @@ const newCard = template.querySelector('.popup');
 const map = document.querySelector('#map-canvas');
 
 
-for(let j = 0;j < similarPosters.length; j++){
+for(let j = 0;j < 1 /*similarPosters.length */; j++){
   const cloneCard = newCard.cloneNode(true);
   const cardTitle = similarPosters[j].offer.title;
   const cloneCardTitle = cloneCard.querySelector('.popup__title');
@@ -21,7 +21,8 @@ for(let j = 0;j < similarPosters.length; j++){
 
   const cardType =  similarPosters[j].offer.type;
   const cloneCardType = cloneCard.querySelector('.popup__type');
-  cloneCardType.textContent = cardType;
+  cloneCardType.textContent = cardType
+  
 
   const cardRoms = similarPosters[j].offer.rooms;
   const cardQuests = similarPosters[j].offer.quests;
@@ -60,3 +61,4 @@ for(let j = 0;j < similarPosters.length; j++){
 
   map.appendChild(cloneCard);
 }
+console.log(similarPosters)
