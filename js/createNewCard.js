@@ -44,14 +44,24 @@ for(let i=0; i < similarPosters.length; i++){
   const similarCardDescription = similarCard.querySelector('.popup__description');
   similarCardDescription.textContent = cardDescription;
 
-  // const cardPhoto = currentPoster.offer.photos;
-  // const similarCardPhotos = similarCard.querySelector('.popup__photos');
-  // const photo = similarCard.querySelector('.popup__photo');
-  // const one = photo.cloneNode(true)
-  // for(let j=0;j<cardPhoto.length;j++){
-  //   one[j].src=cardPhoto[j];
-  //   similarCardPhotos.appendChild(one[j])
-  // }
+
+
+
+//?????????????????????????
+//   const cardPhoto = currentPoster.offer.photos;
+//   const similarCardPhotos = similarCard.querySelector('.popup__photos');
+//   const photo = similarCard.querySelector('.popup__photo');
+  
+//   for(let j=0;j<cardPhoto.length;j++){
+//     const ph = photo.cloneNode(true);
+//     photo.remove();
+//     ph.classList.add(j);
+//     ph.src=cardPhoto[j];
+//     similarCardPhotos.appendChild(ph);
+//   }  
+// console.log(cardPhoto.length)
+
+
 
 
 

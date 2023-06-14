@@ -29,7 +29,7 @@ const createOffer = () => {
     checkout: getRandonArrayElement(TIMES_CHECKOUT),
     features: getRandonFeatures(FEATURES),
     description: getRandonArrayElement(DESCRIPTIONS),
-    photos: new Array(getRandomNumber(0,PHOTOS.length-1)).fill(null).map(() => getRandonArrayElement(PHOTOS)),
+    photos: new Array(getRandomNumber(0,PHOTOS.length)).fill(null).map(() => getRandonArrayElement(PHOTOS)),
   }
 };
 
