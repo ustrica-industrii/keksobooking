@@ -54,5 +54,5 @@ const createPoster = () => {
 //создаем пустой массив заданной из переменной длинны, заполняем сгенерерованными объектами
 const similarPosters = new Array(SIMILAR_AD_COUNT).fill(null).map(() => createPoster());
 
-
+//console.log(similarPosters)
 export {similarPosters};

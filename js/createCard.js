@@ -1,61 +1,30 @@
-import { similarPosters } from './data.js';
+const createBaloon = (poster) =>{
+  const baloonTemplate = document.querySelector('#card').content.querySelector('.popup');
+  const popupElement = baloonTemplate.cloneNode(true);
 
-const template = document.querySelector('#card').content;
-const newCard = template.querySelector('.popup');
-//const map = document.querySelector('#map-canvas');
-
-
-for(let j = 0;j < similarPosters.length; j++){
-  const cloneCard = newCard.cloneNode(true);
-  const cardTitle = similarPosters[j].offer.title;
-  const cloneCardTitle = cloneCard.querySelector('.popup__title');
-  cloneCardTitle.textContent = cardTitle;
-
-  const cardAddress = similarPosters[j].offer.address.x + ',' + similarPosters[0].offer.address.y;
-  const cloneCardAddress = cloneCard.querySelector('.popup__text--address')
-  cloneCardAddress.textContent = cardAddress;
-
-  const cardPrice = similarPosters[j].offer.price;
-  const cloneCardPrice = cloneCard.querySelector('.popup__text--price');
-  cloneCardPrice.textContent = cardPrice + '₽/ночь';
-
-  const cardType =  similarPosters[j].offer.type;
-  const cloneCardType = cloneCard.querySelector('.popup__type');
-  cloneCardType.textContent = cardType
-
-
-  const cardRoms = similarPosters[j].offer.rooms;
-  const cardQuests = similarPosters[j].offer.quests;
-  const cloneCardRoomsAndQuests = cloneCard.querySelector('.popup__text--capacity');
-  cloneCardRoomsAndQuests.textContent = cardRoms + ' комнаты для ' + cardQuests + ' гостей';
-
-  const cardCheckin = similarPosters[j].offer.chekin;
-  const cardCheckout = similarPosters[j].offer.checkout;
-  const cloneCardTimes = cloneCard.querySelector('.popup__text--time');
-  cloneCardTimes.textContent = 'Заезд после ' + cardCheckin + ', выезд до ' + cardCheckout;
-
-  const cardFeatures = similarPosters[j].offer.features;
-  const cloneCardFeatures = cloneCard.querySelector('.popup__features');
-  cloneCardFeatures.textContent = cardFeatures;
-
-  const cardDescription = similarPosters[j].offer.description;
-  const cloneCardDescription = cloneCard.querySelector('.popup__description');
-  cloneCardDescription.textContent = cardDescription;
-
-  const cardAvatar = similarPosters[j].author.avatar;
-  const cloneCardAvatar = cloneCard.querySelector('.popup__avatar');
-  cloneCardAvatar.src = cardAvatar;
-
-  const cardPhoto = similarPosters[j].offer.photos;
-  const cloneCardContainer = cloneCard.querySelector('.popup__photos');
-  const photo = cloneCard.querySelector('.popup__photo');
-  if(cardPhoto.length === 0){
-    cloneCardContainer.remove()
+  popupElement.querySelector('.popup__title').textContent = poster.offer.title;
+  popupElement.querySelector('.popup__text--address').textContent = poster.offer.address.x + ',' + poster.offer.address.y;
+  popupElement.querySelector('.popup__text--price').textContent = poster.offer.price + '₽/ночь';
+  popupElement.querySelector('.popup__type').textContent = poster.offer.type
+  popupElement.querySelector('.popup__text--capacity').textContent = poster.offer.rooms + ' комнаты для ' + poster.offer.quests + ' гостей';
+  popupElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + poster.offer.chekin + ', выезд до ' + poster.offer.checkout;
+  popupElement.querySelector('.popup__features').textContent = poster.offer.features;
+  popupElement.querySelector('.popup__description').textContent = poster.offer.description;
+  popupElement.querySelector('.popup__avatar').src = poster.author.avatar;
+  const photo = popupElement.querySelector('.popup__photo');
+  if(poster.offer.photos.length === 0){
+    popupElement.querySelector('.popup__photos').remove()
   }
-  for(let i=0;i<cardPhoto.length;i++){
+  for(let i=0;i<poster.offer.photos.length;i++){
     const clonePhoto = photo.cloneNode(true);
     photo.remove()
-    clonePhoto.src = cardPhoto[i];
-    cloneCardContainer.appendChild(clonePhoto);
+    clonePhoto.src = poster.offer.photos[i];
+    popupElement.querySelector('.popup__photos').appendChild(clonePhoto);
   }
+
+  return popupElement
 }
+
+
+export {createBaloon};
+
