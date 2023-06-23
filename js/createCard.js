@@ -5,7 +5,10 @@ const createBaloon = (poster) =>{
   popupElement.querySelector('.popup__title').textContent = poster.offer.title;
   popupElement.querySelector('.popup__text--address').textContent = poster.offer.address.x + ',' + poster.offer.address.y;
   popupElement.querySelector('.popup__text--price').textContent = poster.offer.price + '₽/ночь';
-  popupElement.querySelector('.popup__type').textContent = poster.offer.type
+  popupElement.querySelector('.popup__type').textContent = poster.offer.type;
+  if(poster.offer.type === 0){
+    popupElement.querySelector('.popup__type').remove();
+  }
   popupElement.querySelector('.popup__text--capacity').textContent = poster.offer.rooms + ' комнаты для ' + poster.offer.quests + ' гостей';
   popupElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + poster.offer.chekin + ', выезд до ' + poster.offer.checkout;
   popupElement.querySelector('.popup__features').textContent = poster.offer.features;
