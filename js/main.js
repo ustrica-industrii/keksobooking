@@ -1,4 +1,5 @@
 import './data.js';
-import { similarPosters } from './data.js';
-import './createNewCard.js'
-console.log(similarPosters);
+import './createCard.js';
+import './map.js';
+import './siteStatus.js';
+import './formValidation.js'

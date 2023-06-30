@@ -22,12 +22,12 @@ const TITLES = [
   'жилье номер десять',
 ];
 
-const TYPES = [
-  'palace',
-  'flat',
-  'house',
-  'bungalow',
-];
+const TYPES = {
+  palace: 'Дворец',
+  flat: 'Квартира',
+  house: 'Дом',
+  bungalow: 'Бунгало',
+};
 
 const TIMES_CHECKIN = [
   '12:00',

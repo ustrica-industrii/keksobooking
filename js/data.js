@@ -22,14 +22,14 @@ const createOffer = () => {
     title: getRandonArrayElement(TITLES),
     address: createLocation(),
     price: getRandomNumber(0,100000),
-    type: getRandonArrayElement(TYPES),
+    type: getRandonArrayElement(Object.values(TYPES)),
     rooms: getRandomNumber(0,100),
     quests: getRandomNumber(0,100),
     chekin: getRandonArrayElement(TIMES_CHECKIN),
     checkout: getRandonArrayElement(TIMES_CHECKOUT),
     features: getRandonFeatures(FEATURES),
     description: getRandonArrayElement(DESCRIPTIONS),
-    photos: new Array(getRandomNumber(0,PHOTOS.length-1)).fill(null).map(() => getRandonArrayElement(PHOTOS)),
+    photos: new Array(getRandomNumber(0,PHOTOS.length)).fill(null).map(() => getRandonArrayElement(PHOTOS)),
   }
 };
 
@@ -51,8 +51,8 @@ const createPoster = () => {
 };
 
 
-  //создаем пустой массив заданной из переменной длинны, заполняем сгенерерованными объектами
-  const similarPosters = new Array(SIMILAR_AD_COUNT).fill(null).map(() => createPoster());
+//создаем пустой массив заданной из переменной длинны, заполняем сгенерерованными объектами
+const similarPosters = new Array(SIMILAR_AD_COUNT).fill(null).map(() => createPoster());
 
-
+//console.log(similarPosters)
 export {similarPosters};
