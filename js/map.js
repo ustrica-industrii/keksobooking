@@ -74,5 +74,3 @@ mainMarker.on('moveend', (evt) => {
   }
   inputAddress.value = toFixedCoorditate;
 });
-
-
