@@ -1,3 +1,5 @@
+import { sendData } from './api.js';
+
 const posterForm = document.querySelector('.ad-form');
 const inputTitle = posterForm.querySelector('#title');
 const MIN_TITLE_LENGTH = 30;
@@ -23,6 +25,7 @@ const selectTypeOfHousing = posterForm.querySelector('#type');
 const inputPrice = posterForm.querySelector('#price');
 let minPrice = 1000;
 const maxPrice = 1000000;
+
 inputPrice.addEventListener ('input', () => {
   if (inputPrice.value < minPrice) {
     inputPrice.setCustomValidity('Братишка, подними цену на ' + (minPrice - inputPrice.value));
@@ -82,11 +85,12 @@ capacity.value = capacity.children[2].value;
 
 roomNumber.addEventListener('change', () => {
   roomCapacityChange(roomNumber,capacity);
-})
+});
 
 capacity.addEventListener('change', () => {
   roomCapacityChange(roomNumber,capacity)
 });
+
 const roomCapacityChange = (room, people) => {
   if(room.value === '100' && people.value !== '0'){
     people.setCustomValidity('не для гостей');
@@ -103,4 +107,111 @@ const roomCapacityChange = (room, people) => {
     people.setCustomValidity('');
   }
   people.reportValidity();
+};
+
+const inputAddress = posterForm.querySelector('#address');
+inputAddress.value = '35.68950,139.69171';
+const features = posterForm.querySelector('.features');
+const featuresCheckbox = features.querySelectorAll('input');
+const commentArea = posterForm.querySelector('#description');
+const resetButton = posterForm.querySelector('.ad-form__reset');
+
+
+
+const clearForm = () => {
+  inputTitle.value = '';
+  selectTypeOfHousing.value = 'flat';
+  inputPrice.value = '';
+  inputPrice.placeholder = '1000';
+  timeCheckin.value = '12:00';
+  timeCheckout.value = '12:00';
+  roomNumber.value = '1';
+  capacity.value = '1';
+  inputAddress.value = '35.68950,139.69171';
+  for (let j=0;j<featuresCheckbox.length;j++) {
+    featuresCheckbox[j].checked = false;
+  }
+  commentArea.value = '';
 }
+
+// Сообщение об успешной отправке формы
+const successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
+const successMessage = successMessageTemplate.cloneNode(true);
+const body = document.querySelector('body');
+
+
+const onSuccessMessageClick = () => {
+  successMessage.addEventListener('click', () => {
+    successMessage.remove();
+    clearForm();
+  });
+};
+
+const onSuccessMessageKeydown = () => {
+  window.addEventListener('keydown', (evt) => {
+    if(evt.key === 'Escape') {
+      successMessage.remove();
+    }
+  })
+};
+
+//Сообщение об ошибке отправки формы
+const errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
+const errorMessage = errorMessageTemplate.cloneNode(true);
+const errorButtton = errorMessage.querySelector('.error__button');
+
+const onErrorButttonClick = () => {
+  errorButtton.addEventListener('click', () => {
+    errorMessage.remove();
+  })
+};
+const onErrorMesssageClick = () => {
+  errorMessage.addEventListener('click', () => {
+    errorMessage.remove();
+  })
+};
+const onErrorMessageKeydown = () => {
+  window.addEventListener('keydown', (evt) => {
+    if(evt.key === 'Escape') {
+      errorMessage.remove();
+    }
+  })
+};
+
+const showErrorMessage = () => {
+  body.appendChild(errorMessage);
+  onErrorButttonClick();
+  onErrorMesssageClick();
+  onErrorMessageKeydown();
+};
+
+
+const sendForm = () => {
+  body.appendChild(successMessage);
+  onSuccessMessageClick();
+  onSuccessMessageKeydown();
+  clearForm();
+};
+
+// Отправка формы
+const setUserFormSubmit = () => {
+  posterForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    sendData(
+      () => sendForm(),
+      () => showErrorMessage(),
+      new FormData(evt.target),
+    );
+  });
+};
+
+const resetForm = () => {
+  resetButton.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    clearForm();
+  })
+}
+resetForm();
+
+export { setUserFormSubmit, inputAddress, resetForm, sendForm };
