@@ -44,21 +44,60 @@ const markerIcon = L.icon({
   iconAnchor: [20, 40],
 });
 
-const renderMarker = (cards) => {
-  cards.forEach((card) => {
-    const marker = L.marker(
-      {
-        lat: card.location.lat,
-        lng: card.location.lng,
-      },
-      {
-        icon: markerIcon,
-      },
-    );
-    marker.addTo(map).bindPopup(createBaloon(card));
-  })};
+//Пробуем в сортировку
 
-// const inputAddress = formDescription.querySelector('#address');
+
+const Default = {
+  HOUSING_TYPE: 'any',
+  PRICE_TYPE: 'any',
+};
+const getCardRank = (card) => {
+  const typeOfHousingCard = document.querySelector('#housing-type');
+  const typeOfPriceCard = document.querySelector('#housing-price');
+
+  let rank = 0;
+
+  if (card.offer.type === typeOfHousingCard.value || Default.HOUSING_TYPE) {
+    rank += 2;
+  }
+  if(card.offer.price === typeOfPriceCard.value || Default.PRICE_TYPE) {
+    rank += 10;
+  }
+
+  return rank;
+}
+
+
+const compareCards = (cardA, cardB) => {
+  const rankA = getCardRank(cardA);
+  const rankB = getCardRank(cardB);
+
+  return rankB - rankA;
+};
+
+const SIMLAR_CARD_COUNT = 10;
+
+
+const renderMarker = (cards) => {
+
+  cards
+    .slice()
+    .sort(compareCards)
+    .slice(0, SIMLAR_CARD_COUNT)
+    .forEach((card) => {
+      const marker = L.marker(
+        {
+          lat: card.location.lat,
+          lng: card.location.lng,
+        },
+        {
+          icon: markerIcon,
+        },
+      );
+      marker.addTo(map).bindPopup(createBaloon(card));
+    })};
+
+//const inputAddress = formDescription.querySelector('#address');
 // inputAddress.value = '35.68950,139.69171';
 
 mainMarker.on('moveend', (evt) => {
@@ -70,5 +109,10 @@ mainMarker.on('moveend', (evt) => {
   }
   inputAddress.value = toFixedCoorditate;
 });
+// let inputAddressArray = new Array(inputAddress.value);
+// console.log(inputAddressArray)
+// let lat = inputAddressArray[0];
+// let lng = inputAddressArray[1];
+// mainMarker.setLatLng({lat, lng}),update();
 
 export {renderMarker}
