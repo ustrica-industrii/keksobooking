@@ -1,6 +1,6 @@
 import { sendData } from './api.js';
 import { resetFilter } from './filterForm.js';
-//import {renderMarker, renderMainMarker} from './map.js';
+
 
 const posterForm = document.querySelector('.ad-form');
 const inputTitle = posterForm.querySelector('#title');

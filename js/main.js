@@ -3,7 +3,7 @@ import './formValidation.js';
 import { renderMarker, renderMainMarker } from './map.js';
 import { setUserFormSubmit } from './formValidation.js';
 import { getData } from './api.js';
-import { setHouseTypeClick, setPriceTypeClick, setRoomsTypeClick, setHousingGuestsClick, setHousFeaturesClick } from './filterForm.js';
+import { setHouseTypeClick, setPriceTypeClick, setRoomsTypeClick, setHousingGuestsClick, setHouseFeaturesClick } from './filterForm.js';
 
 const markerContainer = document.querySelector('.leaflet-marker-pane');
 
@@ -29,7 +29,7 @@ getData((cards) => {
     renderMainMarker();
     renderMarker(cards);
   });
-  setHousFeaturesClick (() => {
+  setHouseFeaturesClick (() => {
     markerContainer.innerHTML = '';
     renderMainMarker();
     renderMarker(cards);
