@@ -1,39 +1,39 @@
 import './siteStatus.js';
 import './formValidation.js';
-import { renderMarker, renderMainMarker } from './map.js';
-import { setUserFormSubmit } from './formValidation.js';
-import { getData } from './api.js';
-import { setHouseTypeClick, setPriceTypeClick, setRoomsTypeClick, setHousingGuestsClick, setHouseFeaturesClick } from './filterForm.js';
+import {renderMarker} from './map.js';
+import {setUserFormSubmit} from './formValidation.js';
+import {getData} from './api.js';
+import {setHouseTypeClick, setPriceTypeClick, setRoomsTypeClick, setHousingGuestsClick, setHouseFeaturesClick, renderSimilarCards} from './filterForm.js';
+import {debounce} from './util.js';
+import './addPhoto.js';
 
-const markerContainer = document.querySelector('.leaflet-marker-pane');
+
+const RENDER_DELAY = 500;
+
 
 getData((cards) => {
   renderMarker(cards);
-  setHouseTypeClick (() => {
-    markerContainer.innerHTML = '';
-    renderMainMarker();
-    renderMarker(cards);
-  });
-  setPriceTypeClick (() => {
-    markerContainer.innerHTML = '';
-    renderMainMarker();
-    renderMarker(cards);
-  });
-  setRoomsTypeClick (() => {
-    markerContainer.innerHTML = '';
-    renderMainMarker();
-    renderMarker(cards);
-  });
-  setHousingGuestsClick (() => {
-    markerContainer.innerHTML = '';
-    renderMainMarker();
-    renderMarker(cards);
-  });
-  setHouseFeaturesClick (() => {
-    markerContainer.innerHTML = '';
-    renderMainMarker();
-    renderMarker(cards);
-  });
+
+  setHouseTypeClick(debounce(
+    () => renderSimilarCards(cards),
+    RENDER_DELAY,
+  ));
+  setPriceTypeClick(debounce(
+    () => renderSimilarCards(cards),
+    RENDER_DELAY,
+  ));
+  setRoomsTypeClick(debounce(
+    () => renderSimilarCards(cards),
+    RENDER_DELAY,
+  ));
+  setHousingGuestsClick(debounce(
+    () => renderSimilarCards(cards),
+    RENDER_DELAY,
+  ));
+  setHouseFeaturesClick(debounce(
+    () => renderSimilarCards(cards),
+    RENDER_DELAY,
+  ));
 });
 
 setUserFormSubmit();

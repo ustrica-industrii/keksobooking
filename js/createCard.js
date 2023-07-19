@@ -6,7 +6,7 @@ const createBaloon = (poster) =>{
   popupElement.querySelector('.popup__text--address').textContent = (poster.location.lat).toFixed(5) + ',' + (poster.location.lng).toFixed(5);
   popupElement.querySelector('.popup__text--price').textContent = poster.offer.price + '₽/ночь';
   popupElement.querySelector('.popup__type').textContent = poster.offer.type;
-  if(poster.offer.type === 0){
+  if (poster.offer.type === 0) {
     popupElement.querySelector('.popup__type').remove();
   }
   popupElement.querySelector('.popup__text--capacity').textContent = poster.offer.rooms + ' комнаты для ' + poster.offer.guests + ' гостей';
@@ -19,15 +19,17 @@ const createBaloon = (poster) =>{
   const photoInCard = poster.offer.photos;
 
   if (Array.isArray(photoInCard)) {
-    for(let i = 0; i < photoInCard.length; i++){
+    for (let i = 0; i < photoInCard.length; i++){
       photo.remove();
       const clonePhoto = photo.cloneNode(true);
       clonePhoto.src = poster.offer.photos[i];
       photoContainer.appendChild(clonePhoto);
     }
-  } else {
+  }
+  else {
     photoContainer.remove();
   }
+
   return popupElement;
 }
 

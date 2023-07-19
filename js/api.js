@@ -1,5 +1,4 @@
 import {showAlert} from './util.js';
-//import {renderMarker} from './map.js';
 
 const getData = (onSuccess) => {
   fetch('https://23.javascript.pages.academy/keksobooking/data')

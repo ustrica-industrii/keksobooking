@@ -1,5 +1,5 @@
-import { sendData } from './api.js';
-import { resetFilter } from './filterForm.js';
+import {sendData} from './api.js';
+import {resetFilter} from './filterForm.js';
 
 
 const posterForm = document.querySelector('.ad-form');
@@ -14,7 +14,7 @@ inputTitle.addEventListener ('input', () => {
     inputTitle.setCustomValidity('Ещё ' + (MIN_TITLE_LENGTH - valueLength) + ' симв.');
   }
   else if (valueLength > MAX_TITLE_LENGTH) {
-    inputTitle.setCustomValidity('Удалите лишние ' + (valueLength - MAX_TITLE_LENGTH) +' симв.');
+    inputTitle.setCustomValidity('Удалите лишние ' + (valueLength - MAX_TITLE_LENGTH) + ' симв.');
   }
   else {
     inputTitle.setCustomValidity('');
@@ -43,15 +43,16 @@ inputPrice.addEventListener ('input', () => {
 
 let pricePlaceholder = 5000;
 selectTypeOfHousing.addEventListener('change', () => {
-  if(selectTypeOfHousing.value === 'bungalow'){
+  if (selectTypeOfHousing.value === 'bungalow') {
     pricePlaceholder = 0;
   }
-  else if(selectTypeOfHousing.value === 'flat'){
+  else if (selectTypeOfHousing.value === 'flat') {
     pricePlaceholder = 1000;
   }
-  else if(selectTypeOfHousing.value === 'house') {
+  else if (selectTypeOfHousing.value === 'house') {
     pricePlaceholder = 5000;
-  }else{
+  }
+  else {
     pricePlaceholder = 10000;
   }
   minPrice = pricePlaceholder;
@@ -63,15 +64,16 @@ const timeCheckin = posterForm.querySelector('#timein');
 const timeCheckout = posterForm.querySelector('#timeout');
 
 const changeTime = (firstTime, secondTime) => {
-  if(firstTime.value === '12:00'){
+  if (firstTime.value === '12:00') {
     secondTime.value = '12:00';
-  }else if(firstTime.value === '13:00'){
+  }
+  else if (firstTime.value === '13:00') {
     secondTime.value = '13:00';
   }
-  else if(firstTime.value === '14:00'){
+  else if (firstTime.value === '14:00') {
     secondTime.value = '14:00';
   }
-}
+};
 
 timeCheckin.addEventListener('change', () => {
   changeTime(timeCheckin, timeCheckout);
@@ -94,18 +96,19 @@ capacity.addEventListener('change', () => {
 });
 
 const roomCapacityChange = (room, people) => {
-  if(room.value === '100' && people.value !== '0'){
+  if (room.value === '100' && people.value !== '0') {
     people.setCustomValidity('не для гостей');
   }
-  else if(room.value === '3' && people.value == '0'){
+  else if (room.value === '3' && people.value == '0') {
     people.setCustomValidity('для 3 гостей, для 2 гостей или для 1 гостя');
-  }else if((room.value === '2' && people.value == '0') || (room.value === '2' && people.value == '3')){
+  }
+  else if ((room.value === '2' && people.value == '0') || (room.value === '2' && people.value == '3')) {
     people.setCustomValidity('для 2 гостей или для 1 гостя');
   }
-  else if((room.value === '1' && people.value == '0') || (room.value === '1' && people.value == '2') || (room.value === '1' && people.value == '3')){
+  else if ((room.value === '1' && people.value == '0') || (room.value === '1' && people.value == '2') || (room.value === '1' && people.value == '3')) {
     people.setCustomValidity('только для одного гостя');
   }
-  else{
+  else {
     people.setCustomValidity('');
   }
   people.reportValidity();
@@ -130,11 +133,11 @@ const clearForm = () => {
   roomNumber.value = '1';
   capacity.value = '1';
   inputAddress.value = '35.68950,139.69171';
-  for (let j=0;j<featuresCheckbox.length;j++) {
+  for (let j = 0; j < featuresCheckbox.length; j++) {
     featuresCheckbox[j].checked = false;
   }
   commentArea.value = '';
-}
+};
 
 // Сообщение об успешной отправке формы
 const successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
@@ -146,12 +149,12 @@ const onSuccessMessageClick = () => {
   successMessage.addEventListener('click', () => {
     successMessage.remove();
     clearForm();
-  });
+  })
 };
 
 const onSuccessMessageKeydown = () => {
   window.addEventListener('keydown', (evt) => {
-    if(evt.key === 'Escape') {
+    if (evt.key === 'Escape') {
       successMessage.remove();
     }
   })
@@ -218,4 +221,4 @@ const resetForm = () => {
 }
 resetForm();
 
-export { setUserFormSubmit, inputAddress, resetForm, sendForm };
+export {setUserFormSubmit, inputAddress, resetForm, sendForm};

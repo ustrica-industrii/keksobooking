@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
-import { createBaloon } from './createCard.js';
-import { addEnabledStatus, formDescription, formFilters} from './siteStatus.js';
-import { inputAddress } from './formValidation.js';
-import { compareCards } from './filterForm.js';
+import {createBaloon} from './createCard.js';
+import {addEnabledStatus, formDescription, formFilters} from './siteStatus.js';
+import {inputAddress} from './formValidation.js';
+import {compareCards} from './filterForm.js';
 
 
 const map = L.map('map-canvas')
@@ -45,8 +45,8 @@ const renderMainMarker = () => {
     const newCoordinate = evt.target.getLatLng();
     const coordinateValue = Object.values(newCoordinate);
     let toFixedCoorditate = [];
-    for(let i=0;i<coordinateValue.length;i++){
-      toFixedCoorditate[i]=coordinateValue[i].toFixed(5)
+    for(let i = 0; i < coordinateValue.length; i++){
+      toFixedCoorditate[i] = coordinateValue[i].toFixed(5)
     }
     inputAddress.value = toFixedCoorditate;
   });
@@ -81,4 +81,4 @@ const renderMarker = (cards) => {
       marker.addTo(map).bindPopup(createBaloon(card));
     })
 };
-export {renderMarker, renderMainMarker}
+export {renderMarker, renderMainMarker, map}
