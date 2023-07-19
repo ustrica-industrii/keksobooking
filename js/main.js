@@ -1,11 +1,11 @@
-import './siteStatus.js';
-import './formValidation.js';
+import './site-status.js';
+import './form-validation.js';
 import {renderMarker} from './map.js';
-import {setUserFormSubmit} from './formValidation.js';
+import {setUserFormSubmit} from './form-validation.js';
 import {getData} from './api.js';
-import {setHouseTypeClick, setPriceTypeClick, setRoomsTypeClick, setHousingGuestsClick, setHouseFeaturesClick, renderSimilarCards} from './filterForm.js';
+import {setHouseTypeClick, setPriceTypeClick, setRoomsTypeClick, setHousingGuestsClick, setHouseFeaturesClick, renderSimilarCards} from './filter-form.js';
 import {debounce} from './util.js';
-import './addPhoto.js';
+import './add-photo.js';
 
 
 const RENDER_DELAY = 500;

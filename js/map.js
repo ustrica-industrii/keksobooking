@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
-import {createBaloon} from './createCard.js';
-import {addEnabledStatus, formDescription, formFilters} from './siteStatus.js';
-import {inputAddress} from './formValidation.js';
-import {compareCards} from './filterForm.js';
+import {createBaloon} from './create-card.js';
+import {addEnabledStatus, formDescription, formFilters} from './site-status.js';
+import {inputAddress} from './form-validation.js';
+import {compareCards} from './filter-form.js';
 
 
 const map = L.map('map-canvas')
