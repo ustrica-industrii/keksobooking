@@ -1,11 +1,14 @@
 /* eslint-disable no-undef */
+import leaflet from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
 import {createBaloon} from './create-card.js';
 import {addEnabledStatus, formDescription, formFilters} from './site-status.js';
 import {inputAddress} from './form-validation.js';
 import {compareCards} from './filter-form.js';
 
 
-const map = L.map('map-canvas')
+const map = leaflet.map('map-canvas')
   .setView({
     lat: 35.6895000,
     lng: 139.6917100,
@@ -21,15 +24,15 @@ L.tileLayer(
 map.on('load', addEnabledStatus(formDescription));
 map.on('load', addEnabledStatus(formFilters));
 
-const mainMarkerIcon = L.icon({
-  iconUrl: './leaflet/img/main-pin.svg',
+const mainMarkerIcon = leaflet.icon({
+  iconUrl: './img/markers/main-pin.svg',
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
 
 
 const renderMainMarker = () => {
-  const mainMarker = L.marker(
+  const mainMarker = leaflet.marker(
     {
       lat: 35.6895000,
       lng: 139.6917100,
@@ -54,8 +57,8 @@ const renderMainMarker = () => {
 renderMainMarker();
 
 
-const markerIcon = L.icon({
-  iconUrl: './leaflet/img/pin.svg',
+const markerIcon = leaflet.icon({
+  iconUrl: './img/markers/pin.svg',
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 });
