@@ -1,5 +1,5 @@
 import {sendData} from './api.js';
-import {resetFilter} from './filterForm.js';
+import {resetFilter} from './filter-form.js';
 
 
 const posterForm = document.querySelector('.ad-form');
